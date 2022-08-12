@@ -8,11 +8,14 @@ Django==4.1
 django-cors-headers==3.13.0
 django-rest-knox==4.2.0
 djangorestframework==3.13.1
+engineering-notation==0.6.0
+gunicorn==20.1.0
 pycodestyle==2.9.1
 pycparser==2.21
 python-decouple==3.6
 pytz==2022.1
 sqlparse==0.4.2
 static3==0.7.0
+tk-tools==0.16.0
 toml==0.10.2
 tzdata==2022.1
