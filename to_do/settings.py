@@ -124,10 +124,10 @@ STATIC_URL = 'static/'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        # 'rest_framework.authentication.BasicAuthentication',
-        # 'rest_framework.authentication.SessionAuthentication',
-          'knox.auth.TokenAuthentication',
-    ]
+        'rest_framework.authentication.BasicAuthentication',
+        'knox.auth.TokenAuthentication',
+      
+    ],
 }
 
 # Default primary key field type

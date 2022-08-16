@@ -5,7 +5,7 @@ from knox.models import AuthToken
 from tasks.serializer import TaskSerlialization,RegisterSerializer,UserSerializer
 from .models import Task
 from rest_framework import generics,permissions
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.auth import login
@@ -16,14 +16,13 @@ from knox.views import LoginView as KnoxLoginView
 
 class TaskViewSet(viewsets.ModelViewSet):
     queryset = Task.objects.all()
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
-
+    serializer_class=TaskSerlialization
+    permission_classes =(IsAuthenticated,)
 
 
 class RegisterUser(generics.GenericAPIView):
     serializer_class = RegisterSerializer
-    
+    permission_classes = (permissions.AllowAny,)
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
