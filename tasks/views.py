@@ -10,14 +10,21 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.auth import login
 from knox.views import LoginView as KnoxLoginView
+from rest_framework import status
+from rest_framework.response import Response
+
 
 # Create your views here.
 
-
-class TaskViewSet(viewsets.ModelViewSet):
-    queryset = Task.objects.all()
+class genric_list(generics.ListCreateAPIView) :
+    queryset=Task.objects.all()
     serializer_class=TaskSerlialization
-    permission_classes =(IsAuthenticated,)
+    permission_classes=[IsAuthenticated]
+
+#class TaskViewSet(viewsets.ModelViewSet):
+ #   serializer_class=TaskSerlialization
+  #  queryset = Task.objects.all()
+   # permission_classes =(IsAuthenticated,)
 
 
 class RegisterUser(generics.GenericAPIView):
