@@ -10,7 +10,7 @@ class TaskSerlialization(serializers.ModelSerializer):
 
     class Meta:
         model = Task
-        fields = ['id', 'title', 'description', 'task_date']
+        fields = ['id', 'title', 'description', 'task_date','user_id']
 
 # User Serializer
 
@@ -21,8 +21,6 @@ class UserSerializer(serializers.ModelSerializer):
         fields = ('id', 'username', 'email')
 
 # Register Serializer
-
-
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User

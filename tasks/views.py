@@ -1,30 +1,40 @@
+
 from django.shortcuts import render
-from rest_framework import viewsets
 from rest_framework.response import Response
 from knox.models import AuthToken
 from tasks.serializer import TaskSerlialization,RegisterSerializer,UserSerializer
-from .models import Task
+from .models import Task ,User
 from rest_framework import generics,permissions
-from rest_framework.permissions import IsAuthenticated,AllowAny
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken.serializers import AuthTokenSerializer
 from django.contrib.auth import login
 from knox.views import LoginView as KnoxLoginView
 from rest_framework import status
 from rest_framework.response import Response
-
+from rest_framework.decorators import api_view,permission_classes
 
 # Create your views here.
 
-class genric_list(generics.ListCreateAPIView) :
-    queryset=Task.objects.all()
-    serializer_class=TaskSerlialization
+
+#get and post
+class task_gp(generics.ListCreateAPIView) :
     permission_classes=[IsAuthenticated]
+    queryset=Task.objects.all()
+    serializer_class=TaskSerlialization    
+
+#get ,delete and update
+class task_gdu(generics.RetrieveUpdateDestroyAPIView) :
+    permission_classes=[IsAuthenticated]
+    queryset=Task.objects.all()
+    serializer_class=TaskSerlialization  
 
 #class TaskViewSet(viewsets.ModelViewSet):
  #   serializer_class=TaskSerlialization
   #  queryset = Task.objects.all()
    # permission_classes =(IsAuthenticated,)
+class Userlist(generics.ListCreateAPIView) :
+    queryset=User.objects.all()
+    serializer_class=UserSerializer
 
 
 class RegisterUser(generics.GenericAPIView):
